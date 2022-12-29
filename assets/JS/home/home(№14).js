@@ -61,12 +61,17 @@ btnForClock.addEventListener('click', ()=>{
 
 inputForTimer.addEventListener('change', ()=>{
     if(inputForTimer.value > 0){
+        let timerValue = inputForTimer.value;
+        let intrval = setInterval(()=>{
+            console.log(timerValue);
+            timerHTML.textContent = timerValue;
+            timerValue -= 1;
+        },1000)
         setTimeout(()=>{
             alert('Время Вышло!');
-        }, (inputForTimer.value) * 1000 );
-        setInterval(()=>{
-            
-        },1000)
+            clearInterval(intrval);
+            timerHTML.textContent = null;
+        },(inputForTimer.value*1000)+1000);
     }
 }) 
 
